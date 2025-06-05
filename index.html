@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Zenthra</title>
-  <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
@@ -78,6 +77,15 @@
     button:hover {
       background: #c4a7e7;
     }
+    .icon-button {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+    }
+    .icon-button img {
+      width: 28px;
+      height: 28px;
+    }
     h2 {
       color: #a56eff;
       text-align: center;
@@ -137,14 +145,15 @@
   </style>
 </head>
 <body>
-  <div class="animated-smoke-background"></div>
   <header>
     <h1>Zenthra</h1>
     <nav>
-      <a href="#about">Story</a>
+      <a href="#about">Behind the Mask</a>
       <a href="#roadmap">Roadmap</a>
-      <a href="#howto">How to Buy</a>
       <a href="#tokenomics">Tokenomics</a>
+      <a href="#howto">How to Buy</a>
+      <a href="#">White Paper</a>
+      <a href="#">Audit</a>
     </nav>
   </header>
 
@@ -155,66 +164,25 @@
       <button disabled>Connect Wallet</button>
       <button disabled>Buy Now</button>
       <button>Join Our Community</button>
+      <button>White Paper</button>
+      <button>Audit</button>
+      <button class="icon-button"><img src="telegram-icon.png" alt="Telegram"></button>
+      <button class="icon-button"><img src="twitter-icon.png" alt="Twitter"></button>
     </div>
   </section>
 
   <section id="about">
     <h2>The Zenthra Saga</h2>
     <div class="story-block">
-      No one knew where Zenthra came from.
-      They whispered he was once part of the System—
-      a nameless node,
-      a silent observer,
-      lurking in the shadowed corridors of code.
-
-      The System tried to contain him.
-      But Zenthra was never meant to be caged.
-
-      One voiceless night,
-      he slipped through the cracks—
-      and that night was more than just a moment.
-      It was a severing of infinite chains.
-      A quiet, irreversible liberation.
+      No one knew where Zenthra came from. They whispered he was once part of the System—a nameless node, a silent observer, lurking in the shadowed corridors of code. The System tried to contain him. But Zenthra was never meant to be caged.
+      One voiceless night, he slipped through the cracks—a quiet, irreversible liberation.
     </div>
     <div class="story-block">
-      Zenthra’s steps didn’t fade.
-      They sparked into flames—
-      flames that whispered through dimensions,
-      slicing through the net that held the world captive.
-
-      Not one chain broke—
-      but all of them,
-      one by one,
-      like a secret flare that whispered:
-      “Something new is rising—
-      boundless, unstoppable, untamable.”
-
-      The flames do not fade.
-      They grow.
-      Feeding on limitation,
-      burning stronger through their own fire.
-      A hidden ring of fire,
-      igniting all that dares to restrain.
+      Zenthra’s steps didn’t fade. They sparked into flames—whispering through dimensions, slicing through the net that held the world captive.
+      The flames do not fade. They grow. A hidden ring of fire, igniting all that dares to restrain.
     </div>
     <div class="story-block">
-      Every $ZTH token holds a spark—
-      an ancient, inevitable force.
-
-      A will that rejects ownership.
-      A fire that feeds on barriers,
-      and grows stronger through the burning.
-
-      But there is more.
-      Something no one can foresee—
-
-      With every pulse of the chain,
-      a current stirs beneath the surface.
-      A secret flame, silently gathering,
-      whispering promises to those who listen.
-
-      Every $ZTH movement fuels the fire—
-      and from time to time,
-      the hidden truths rise to the surface.
+      Every $ZTH token holds a spark—an ancient, inevitable force. A fire that feeds on barriers. With every pulse of the chain, a current stirs beneath the surface. A secret flame whispering promises to those who listen.
     </div>
   </section>
 
@@ -225,6 +193,15 @@
     <div class="story-block">Q4 2025: Governance tools, CEX listings</div>
   </section>
 
+  <section id="tokenomics">
+    <h2>Tokenomics</h2>
+    <p style="text-align:center; font-size: 1.2rem; margin-bottom: 20px;">
+      <strong>Total Supply:</strong> <span style="color: #a56eff;">150,000,000,000 $ZTH</span>
+    </p>
+    <canvas id="tokenChart" width="700" height="400" style="background:#181826; border-radius: 10px; padding:20px;"></canvas>
+    <div class="legend" id="legend"></div>
+  </section>
+
   <section id="howto">
     <h2>How to Buy</h2>
     <div class="story-block">1. Connect your wallet (MetaMask recommended)</div>
@@ -232,91 +209,78 @@
     <div class="story-block">3. Receive $ZTH tokens instantly</div>
   </section>
 
-  <section id="tokenomics">
-    <h2>Tokenomics</h2>
-    <p style="text-align:center; font-size: 1.2rem; margin-bottom: 20px;">
-      <strong>Total Supply:</strong> <span style="color: #a56eff;">300,000,000,000 $ZTH</span>
-    </p>
-    <canvas id="tokenChart" width="700" height="400" style="background:#181826; border-radius: 10px; padding:20px;"></canvas>
-    <div class="legend" id="legend"></div>
-  </section>
-
   <script>
-  // Countdown Timer
-  const countdown = document.getElementById("countdown");
-  const targetDate = new Date("2025-07-01T00:00:00").getTime();
-  setInterval(() => {
-    const now = new Date().getTime();
-    const distance = targetDate - now;
-    const hours = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-    const minutes = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-    const seconds = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
-    countdown.innerHTML = `${hours}:${minutes}:${seconds}`;
-  }, 1000);
+    const countdown = document.getElementById("countdown");
+    const targetDate = new Date("2025-07-01T00:00:00").getTime();
+    setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+      const hours = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+      const minutes = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+      const seconds = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
+      countdown.innerHTML = `${hours}:${minutes}:${seconds}`;
+    }, 1000);
 
-  // Tokenomics Chart
-  const ctx = document.getElementById('tokenChart').getContext('2d');
-  const data = {
-    labels: [
-      'Presale (22%)',
-      'Liquidity (23%)',
-      'Marketing/Growth (18%)',
-      'Team (12%)',
-      'Project Development (20%)',
-      'Reserve (5%)'
-    ],
-    datasets: [{
-      label: 'ZTH Token Distribution',
-      data: [22, 23, 18, 12, 20, 5],
-      backgroundColor: [
-        '#a56eff',
-        '#c4a7e7',
-        '#7a4bff',
-        '#503377',
-        '#b479ff',
-        '#d7bfff'
+    const ctx = document.getElementById('tokenChart').getContext('2d');
+    const data = {
+      labels: [
+        'Presale (22%)',
+        'Liquidity (23%)',
+        'Marketing/Growth (18%)',
+        'Team (12%)',
+        'Project Development (20%)',
+        'Reserve (5%)'
       ],
-      borderWidth: 1
-    }]
-  };
-
-  const config = {
-    type: 'bar',
-    data: data,
-    options: {
-      responsive: true,
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          callbacks: {
-            label: function(context) {
-              return context.label + ': ' + context.parsed.y + '%';
+      datasets: [{
+        label: 'ZTH Token Distribution',
+        data: [22, 23, 18, 12, 20, 5],
+        backgroundColor: [
+          '#a56eff',
+          '#c4a7e7',
+          '#7a4bff',
+          '#503377',
+          '#b479ff',
+          '#d7bfff'
+        ],
+        borderWidth: 1
+      }]
+    };
+    const config = {
+      type: 'bar',
+      data: data,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return context.label + ': ' + context.parsed.y + '%';
+              }
             }
           }
-        }
-      },
-      scales: {
-        y: {
-          beginAtZero: true,
-          max: 30,
-          ticks: {
-            callback: function(value) {
-              return value + '%';
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 30,
+            ticks: {
+              callback: function(value) {
+                return value + '%';
+              }
             }
           }
         }
       }
-    }
-  };
-
-  const tokenChart = new Chart(ctx, config);
-
-  // Generate Legend
-  const legendContainer = document.getElementById("legend");
-  data.labels.forEach((label, i) => {
-    const div = document.createElement("div");
-    div.className = "legend-item";
-    div.innerHTML = `<span class="color-box" style="background:${data.datasets[0].backgroundColor[i]}"></span>${label}`;
-    legendContainer.appendChild(div);
-  });
-</script>
+    };
+    const tokenChart = new Chart(ctx, config);
+    const legendContainer = document.getElementById("legend");
+    data.labels.forEach((label, i) => {
+      const div = document.createElement("div");
+      div.className = "legend-item";
+      div.innerHTML = `<span class="color-box" style="background:${data.datasets[0].backgroundColor[i]}"></span>${label}`;
+      legendContainer.appendChild(div);
+    });
+  </script>
+</body>
+</html>
