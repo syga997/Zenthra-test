@@ -47,21 +47,33 @@
     #hero {
       text-align: center;
     }
+    .hero-box {
+      background: rgba(30, 20, 50, 0.75);
+      border: 2px solid #a56eff55;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 0 20px #a56eff66;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 600px;
+      margin: 0 auto 20px;
+    }
     #countdown {
-      font-size: 5rem;
+      font-size: 4rem;
       color: #c4a7e7;
       text-shadow: 0 0 20px #c4a7e7cc;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
     #countdown-text {
-      font-size: 1.2rem;
-      margin-bottom: 40px;
+      font-size: 1rem;
+      margin-bottom: 30px;
     }
-    .buttons {
+    .action-buttons {
       display: flex;
-      justify-content: center;
       gap: 20px;
       flex-wrap: wrap;
+      justify-content: center;
     }
     button {
       background: #a56eff;
@@ -85,6 +97,18 @@
     .icon-button img {
       width: 28px;
       height: 28px;
+    }
+    .community {
+      margin-top: 20px;
+    }
+    .social-icons {
+      margin-top: 10px;
+      display: none;
+      gap: 10px;
+      justify-content: center;
+    }
+    .social-icons.active {
+      display: flex;
     }
     h2 {
       color: #a56eff;
@@ -126,6 +150,20 @@
       margin-right: 10px;
       border-radius: 3px;
     }
+    footer {
+      text-align: center;
+      padding: 30px 10px;
+      color: #777;
+      font-size: 0.9rem;
+    }
+    footer a {
+      color: #a56eff;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
     @media (max-width: 768px) {
       header {
         flex-direction: column;
@@ -134,12 +172,8 @@
       nav {
         margin-top: 10px;
       }
-      #countdown {
-        font-size: 3rem;
-      }
-      .buttons {
+      .action-buttons {
         flex-direction: column;
-        align-items: center;
       }
     }
   </style>
@@ -152,38 +186,33 @@
       <a href="#roadmap">Roadmap</a>
       <a href="#tokenomics">Tokenomics</a>
       <a href="#howto">How to Buy</a>
-      <a href="#">White Paper</a>
-      <a href="#">Audit</a>
     </nav>
   </header>
 
   <section id="hero">
-    <div id="countdown">00:00:00</div>
-    <div id="countdown-text">Presale opens when the countdown hits zero</div>
-    <div class="buttons">
-      <button disabled>Connect Wallet</button>
-      <button disabled>Buy Now</button>
-      <button>Join Our Community</button>
-      <button>White Paper</button>
-      <button>Audit</button>
-      <button class="icon-button"><img src="telegram-icon.png" alt="Telegram"></button>
-      <button class="icon-button"><img src="twitter-icon.png" alt="Twitter"></button>
+    <div class="hero-box">
+      <div id="countdown">00:00:00</div>
+      <div id="countdown-text">Presale opens when the countdown hits zero</div>
+      <div class="action-buttons">
+        <button disabled>Connect Wallet</button>
+        <button disabled>Buy Now</button>
+      </div>
+    </div>
+
+    <div class="community">
+      <button id="toggleSocials">Join Our Community</button>
+      <div class="social-icons" id="socialIcons">
+        <a href="https://t.me/yourchannel" target="_blank" class="icon-button"><img src="telegram-icon.png" alt="Telegram"></a>
+        <a href="https://twitter.com/yourprofile" target="_blank" class="icon-button"><img src="twitter-icon.png" alt="Twitter"></a>
+      </div>
     </div>
   </section>
 
   <section id="about">
     <h2>The Zenthra Saga</h2>
-    <div class="story-block">
-      No one knew where Zenthra came from. They whispered he was once part of the System—a nameless node, a silent observer, lurking in the shadowed corridors of code. The System tried to contain him. But Zenthra was never meant to be caged.
-      One voiceless night, he slipped through the cracks—a quiet, irreversible liberation.
-    </div>
-    <div class="story-block">
-      Zenthra’s steps didn’t fade. They sparked into flames—whispering through dimensions, slicing through the net that held the world captive.
-      The flames do not fade. They grow. A hidden ring of fire, igniting all that dares to restrain.
-    </div>
-    <div class="story-block">
-      Every $ZTH token holds a spark—an ancient, inevitable force. A fire that feeds on barriers. With every pulse of the chain, a current stirs beneath the surface. A secret flame whispering promises to those who listen.
-    </div>
+    <div class="story-block">No one knew where Zenthra came from. They whispered he was once part of the System—a nameless node, a silent observer, lurking in the shadowed corridors of code. The System tried to contain him. But Zenthra was never meant to be caged. One voiceless night, he slipped through the cracks—a quiet, irreversible liberation.</div>
+    <div class="story-block">Zenthra’s steps didn’t fade. They sparked into flames—whispering through dimensions, slicing through the net that held the world captive. The flames do not fade. They grow. A hidden ring of fire, igniting all that dares to restrain.</div>
+    <div class="story-block">Every $ZTH token holds a spark—an ancient, inevitable force. A fire that feeds on barriers. With every pulse of the chain, a current stirs beneath the surface. A secret flame whispering promises to those who listen.</div>
   </section>
 
   <section id="roadmap">
@@ -209,6 +238,10 @@
     <div class="story-block">3. Receive $ZTH tokens instantly</div>
   </section>
 
+  <footer>
+    <p>© 2025 Zenthra | <a href="#">White Paper</a> | <a href="#">Audit</a></p>
+  </footer>
+
   <script>
     const countdown = document.getElementById("countdown");
     const targetDate = new Date("2025-07-01T00:00:00").getTime();
@@ -221,27 +254,19 @@
       countdown.innerHTML = `${hours}:${minutes}:${seconds}`;
     }, 1000);
 
+    const toggleBtn = document.getElementById("toggleSocials");
+    const socials = document.getElementById("socialIcons");
+    toggleBtn.addEventListener("click", () => {
+      socials.classList.toggle("active");
+    });
+
     const ctx = document.getElementById('tokenChart').getContext('2d');
     const data = {
-      labels: [
-        'Presale (22%)',
-        'Liquidity (23%)',
-        'Marketing/Growth (18%)',
-        'Team (12%)',
-        'Project Development (20%)',
-        'Reserve (5%)'
-      ],
+      labels: ['Presale (22%)','Liquidity (23%)','Marketing/Growth (18%)','Team (12%)','Project Development (20%)','Reserve (5%)'],
       datasets: [{
         label: 'ZTH Token Distribution',
         data: [22, 23, 18, 12, 20, 5],
-        backgroundColor: [
-          '#a56eff',
-          '#c4a7e7',
-          '#7a4bff',
-          '#503377',
-          '#b479ff',
-          '#d7bfff'
-        ],
+        backgroundColor: ['#a56eff','#c4a7e7','#7a4bff','#503377','#b479ff','#d7bfff'],
         borderWidth: 1
       }]
     };
@@ -273,7 +298,8 @@
         }
       }
     };
-    const tokenChart = new Chart(ctx, config);
+    new Chart(ctx, config);
+
     const legendContainer = document.getElementById("legend");
     data.labels.forEach((label, i) => {
       const div = document.createElement("div");
