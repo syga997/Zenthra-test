@@ -21,6 +21,7 @@
       background: rgba(15, 15, 30, 0.9);
       display: flex;
       justify-content: space-between;
+      align-items: center;
       padding: 20px 40px;
       z-index: 10;
     }
@@ -28,6 +29,9 @@
       color: #a56eff;
       font-size: 2rem;
       text-shadow: 0 0 10px #a56effaa;
+    }
+    nav {
+      display: flex;
     }
     nav a {
       margin-left: 20px;
@@ -38,6 +42,13 @@
     }
     nav a:hover {
       color: #a56eff;
+    }
+    .menu-toggle {
+      display: none;
+      font-size: 2rem;
+      color: #a56eff;
+      cursor: pointer;
+      z-index: 15;
     }
     section {
       padding: 140px 20px 80px;
@@ -164,13 +175,29 @@
     footer a:hover {
       text-decoration: underline;
     }
+
     @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        align-items: center;
+      .menu-toggle {
+        display: block;
       }
       nav {
-        margin-top: 10px;
+        display: none;
+        flex-direction: column;
+        background: rgba(20, 20, 40, 0.95);
+        width: 100%;
+        text-align: center;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        padding: 20px 0;
+        z-index: 9;
+      }
+      nav a {
+        margin: 10px 0;
+        display: block;
+      }
+      nav.active {
+        display: flex;
       }
       .action-buttons {
         flex-direction: column;
@@ -181,7 +208,8 @@
 <body>
   <header>
     <h1>Zenthra</h1>
-    <nav>
+    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+    <nav id="navbar">
       <a href="#about">Behind the Mask</a>
       <a href="#roadmap">Roadmap</a>
       <a href="#tokenomics">Tokenomics</a>
@@ -306,6 +334,13 @@
       div.className = "legend-item";
       div.innerHTML = `<span class="color-box" style="background:${data.datasets[0].backgroundColor[i]}"></span>${label}`;
       legendContainer.appendChild(div);
+    });
+
+    // Hamburger menu toggle
+    const toggleMenu = document.getElementById("menu-toggle");
+    const navbar = document.getElementById("navbar");
+    toggleMenu.addEventListener("click", () => {
+      navbar.classList.toggle("active");
     });
   </script>
 </body>
